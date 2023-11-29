@@ -1,3 +1,4 @@
+import ListModel from '../model/listModel.js';
 import { 
   createListService,
   deleteListService
@@ -27,5 +28,18 @@ export const deleteList = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: error.message });
+  }
+};
+
+export const getList = async (req, res) => {
+  try {
+    const { type, genre, page, limit } = req.query;
+
+    const list = await getListItems(type, genre, page, limit);
+
+    res.status(200).json(list);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };

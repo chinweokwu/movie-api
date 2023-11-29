@@ -29,3 +29,32 @@ export const getMovieService = async (id) => {
   }
 };
 
+export const getListItems = async (type, genre, page = 1, limit = 10) => {
+  try {
+    const sampleStage = { $sample: { size: Number(limit) } };
+    const matchStage = {};
+
+    if (type) {
+      matchStage.type = type;
+    }
+
+    if (genre) {
+      matchStage.genre = genre;
+    }
+
+    const skipStage = { $skip: (Number(page) - 1) * Number(limit) };
+
+    const aggregationPipeline = [
+      sampleStage,
+      ...(Object.keys(matchStage).length ? [{ $match: matchStage }] : []),
+      skipStage,
+    ];
+
+    const list = await ListModel.aggregate(aggregationPipeline);
+
+    return list;
+  } catch (error) {
+    console.error(error);
+    throw new Error('Internal server error');
+  }
+};

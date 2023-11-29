@@ -55,6 +55,6 @@ export const getListItems = async (type, genre, page = 1, limit = 10) => {
     return list;
   } catch (error) {
     console.error(error);
-    throw new Error('Internal server error');
+    throw new Error("Internal server error");
   }
 };

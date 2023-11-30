@@ -29,6 +29,8 @@ export const getMovieService = async (id) => {
   }
 };
 
+// /api/list?type=yourType&genre=yourGenre&page=2&limit=5
+
 export const getListItems = async (type, genre, page = 1, limit = 10) => {
   try {
     const sampleStage = { $sample: { size: Number(limit) } };

@@ -1,6 +1,7 @@
 import {
   createList,
-  deleteList
+  deleteList,
+  getList
 } from "../controller/listCrtl.js";
 import {
   authMiddleware,
@@ -16,5 +17,6 @@ router.delete(
   adminAuthMiddleware,
   deleteList
 );
+router.post("/get-list", authMiddleware, getList);
 
 export default router;

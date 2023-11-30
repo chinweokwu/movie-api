@@ -36,7 +36,13 @@ const movieSchema = new mongoose.schema({
   isSeries: {
     type: Boolean,
     default: false
-  }
+  },
+  favorites: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Favorite",
+    },
+  ]
 },
   { timestamps: true}
 )

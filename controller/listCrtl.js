@@ -1,4 +1,3 @@
-import ListModel from '../model/listModel.js';
 import { 
   createListService,
   deleteListService
